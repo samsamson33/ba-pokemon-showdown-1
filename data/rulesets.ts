@@ -43,6 +43,27 @@ export const Formats: {[k: string]: FormatsData} = {
 			}
 		},
 	},
+	traininggbu: {
+		effectType: 'ValidatorRule',
+		name: 'Standard GBU',
+		desc: "Custom training ruleset based on the standard ruleset for all official in-game Pok&eacute;mon tournaments and Battle Spot",
+		ruleset: ['Obtainable', 'Team Preview', 'Cancel Mod'],
+		banlist: ['Battle Bond',
+			'Mewtwo', 'Mew',
+			'Lugia', 'Ho-Oh', 'Celebi',
+			'Kyogre', 'Groudon', 'Rayquaza', 'Jirachi', 'Deoxys',
+			'Dialga', 'Palkia', 'Giratina', 'Phione', 'Manaphy', 'Darkrai', 'Shaymin', 'Arceus',
+			'Victini', 'Reshiram', 'Zekrom', 'Kyurem', 'Keldeo', 'Meloetta', 'Genesect',
+			'Xerneas', 'Yveltal', 'Zygarde', 'Diancie', 'Hoopa', 'Volcanion',
+			'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala', 'Necrozma', 'Magearna', 'Marshadow', 'Zeraora',
+			'Meltan', 'Melmetal', 'Zacian', 'Zamazenta', 'Eternatus', 'Zarude',
+		],
+		onValidateSet(set, format) {
+			if (this.gen < 7 && this.toID(set.item) === 'souldew') {
+				return [`${set.name || set.species} has Soul Dew, which is banned in ${format.name}.`];
+			}
+		},
+	},
 	minimalgbu: {
 		effectType: 'ValidatorRule',
 		name: 'Minimal GBU',
